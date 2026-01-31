@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IntellaBooks - Autonomous AI Sales & Operations</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(180deg, #013356 0%, #000000 100%);
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            padding: 80px 24px;
+        }
+
+        .hero-headline {
+            font-size: clamp(48px, 7vw, 84px);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 24px;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #ffffff 0%, #00d9ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-tagline {
+            font-size: clamp(24px, 3vw, 36px);
+            font-weight: 600;
+            margin-bottom: 32px;
+            color: #00d9ff;
+            letter-spacing: -0.01em;
+        }
+
+        .hero-subheadline {
+            font-size: clamp(18px, 2.5vw, 24px);
+            font-weight: 300;
+            max-width: 900px;
+            margin: 0 auto 48px;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.6;
+        }
+
+        .visual-orb {
+            width: 320px;
+            height: 320px;
+            margin: 60px auto;
+            position: relative;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .orb-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #00d9ff, #013356, #000814);
+            box-shadow: 0 0 100px rgba(0, 217, 255, 0.6),
+                        0 0 200px rgba(0, 217, 255, 0.3),
+                        inset 0 0 60px rgba(0, 217, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .cta-primary {
+            display: inline-block;
+            padding: 18px 48px;
+            font-size: 18px;
+            font-weight: 600;
+            background: linear-gradient(135deg, #00d9ff, #0099cc);
+            color: #000814;
+            text-decoration: none;
+            border-radius: 12px;
+            margin: 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 32px rgba(0, 217, 255, 0.4);
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 48px rgba(0, 217, 255, 0.6);
+        }
+
+        .cta-secondary {
+            display: inline-block;
+            padding: 18px 48px;
+            font-size: 18px;
+            font-weight: 500;
+            background: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 12px;
+            margin: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .cta-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(0, 217, 255, 0.5);
+        }
+
+        /* Problem Section */
+        .problem-section {
+            padding: 120px 24px;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .section-intro {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #00d9ff;
+            margin-bottom: 16px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 700;
+            margin-bottom: 32px;
+            letter-spacing: -0.02em;
+            text-align: center;
+        }
+
+        .section-description {
+            font-size: clamp(18px, 2.5vw, 22px);
+            max-width: 800px;
+            margin: 0 auto 80px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+            text-align: center;
+        }
+
+        /* Core Solution Section */
+        .solution-section {
+            padding: 120px 24px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+            margin-top: 60px;
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .feature-card {
+            background: rgba(1, 51, 86, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 217, 255, 0.5);
+            box-shadow: 0 20px 60px rgba(0, 217, 255, 0.2);
+        }
+
+        .feature-title {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #00d9ff;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .feature-headline {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .feature-description {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        /* How It Works Section */
+        .workflow-section {
+            padding: 120px 24px;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .timeline {
+            max-width: 900px;
+            margin: 80px auto 0;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, #00d9ff, rgba(0, 217, 255, 0.1));
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 80px;
+            position: relative;
+        }
+
+        .timeline-number {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00d9ff, #013356);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: 700;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 40px rgba(0, 217, 255, 0.5);
+            z-index: 2;
+        }
+
+        .timeline-content {
+            width: 45%;
+            padding: 32px;
+            background: rgba(1, 51, 86, 0.2);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: auto;
+            margin-right: 55%;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: 55%;
+        }
+
+        .timeline-step {
+            font-size: 14px;
+            text-transform: uppercase;
+            color: #00d9ff;
+            font-weight: 600;
+            margin-bottom: 8px;
+            letter-spacing: 0.1em;
+        }
+
+        .timeline-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .timeline-description {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        .footer-note {
+            text-align: center;
+            font-size: 20px;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 60px;
+        }
+
+        /* Scale Section */
+        .scale-section {
+            padding: 120px 24px;
+        }
+
+        .scale-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .scale-card {
+            background: rgba(1, 51, 86, 0.15);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            border-radius: 16px;
+            padding: 32px;
+            backdrop-filter: blur(10px);
+        }
+
+        .scale-card h3 {
+            font-size: 22px;
+            color: #00d9ff;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .scale-card p {
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        /* Design Language Section */
+        .design-section {
+            padding: 120px 24px;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .mockup-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 60px;
+            margin-top: 80px;
+            flex-wrap: wrap;
+        }
+
+        .dashboard-mockup {
+            width: 600px;
+            height: 400px;
+            background: rgba(1, 51, 86, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            padding: 24px;
+            box-shadow: 0 20px 80px rgba(0, 217, 255, 0.2);
+        }
+
+        .phone-mockup {
+            width: 280px;
+            height: 560px;
+            background: linear-gradient(145deg, #1a1a1a, #0a0a0a);
+            border-radius: 40px;
+            border: 8px solid #2a2a2a;
+            padding: 16px;
+            box-shadow: 0 30px 100px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, #000814, #013356);
+            border-radius: 32px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .call-indicator {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00d9ff, #0099cc);
+            margin-bottom: 24px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .call-text {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 8px;
+        }
+
+        .call-name {
+            font-size: 24px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        /* Closing Section */
+        .closing-section {
+            padding: 120px 24px;
+            text-align: center;
+        }
+
+        .quote-box {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px;
+            background: rgba(1, 51, 86, 0.2);
+            border-left: 4px solid #00d9ff;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .quote-text {
+            font-size: clamp(20px, 3vw, 28px);
+            font-weight: 300;
+            line-height: 1.8;
+            margin-bottom: 32px;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        .quote-author {
+            font-size: 18px;
+            font-weight: 600;
+            color: #00d9ff;
+        }
+
+        /* Final CTA Section */
+        .final-cta {
+            padding: 120px 24px 80px;
+            text-align: center;
+        }
+
+        .final-headline {
+            font-size: clamp(40px, 6vw, 64px);
+            font-weight: 700;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+
+        .final-subtext {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 48px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 40px;
+            }
+
+            .timeline-number {
+                left: 40px;
+            }
+
+            .timeline-content {
+                width: calc(100% - 120px);
+                margin-left: 120px !important;
+                margin-right: 0 !important;
+            }
+
+            .mockup-container {
+                flex-direction: column;
+            }
+
+            .dashboard-mockup {
+                width: 100%;
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-headline">IntellaBooks</h1>
+            <p class="hero-tagline">Nurture what you've built. Scale what works.</p>
+            <p class="hero-subheadline">Most businesses are so focused on chasing new leads, they forget about the customers they already have. We fix that. AI-powered retention that turns existing relationships into revenue—then scales intelligently from there.</p>
+            
+            <div class="visual-orb">
+                <div class="orb-inner"></div>
+            </div>
+            
+            <div>
+                <a href="#" class="cta-primary">Deploy IntellaBooks</a>
+                <a href="#" class="cta-secondary">Watch the 60-Second Demo</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem-section">
+        <div class="container">
+            <p class="section-intro">The $500B Problem</p>
+            <h2 class="section-title">You're leaving money on the table</h2>
+            <p class="section-description">Your existing customers already trust you. They've already bought from you. But they go cold because you're drowning in operations—missed birthdays, forgotten follow-ups, leads that slip through the cracks. Not because you don't care. Because you don't have the time.</p>
+        </div>
+    </section>
+
+    <!-- Core Solution Section -->
+    <section class="solution-section">
+        <div class="container">
+            <p class="section-intro">The IntellaBooks System</p>
+            <h2 class="section-title">We automate the relationships that matter</h2>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <p class="feature-title">AI Receptionist</p>
+                    <h3 class="feature-headline">Always On.</h3>
+                    <p class="feature-description">24/7 voice AI that proactively reaches out to existing customers to ensure satisfaction, then seamlessly handles inbound calls, qualifies new leads, and books meetings—all while referencing your custom knowledge base.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <p class="feature-title">Automated Nurture</p>
+                    <h3 class="feature-headline">Build Brand Loyalty.</h3>
+                    <p class="feature-description">Email, SMS, calls, birthdays, check-ins—all the relationship-building touches that turn customers into advocates, running automatically in the background.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <p class="feature-title">Expert Team</p>
+                    <h3 class="feature-headline">100+ Years of Experience.</h3>
+                    <p class="feature-description">Backed by a team with over a century of collective expertise in marketing, data strategy, and operations—we handle everything so you don't have to.</p>
+                </div>
+
+                <div class="feature-card">
+                    <p class="feature-title">Audience Growth</p>
+                    <h3 class="feature-headline">Strategic Expansion.</h3>
+                    <p class="feature-description">Once retention is locked in, we grow your reach through targeted ads and compelling social content on the channels that actually matter—all supported by our design team.</p>
+                </div>
+            </div>
+
+            <p class="section-description" style="margin-top: 80px;">Setup takes 2 weeks. Phone agent live in 48 hours. We've worked with 1-person businesses and enterprises—we meet you where you are.</p>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="workflow-section">
+        <div class="container">
+            <p class="section-intro">Example Workflow</p>
+            <h2 class="section-title">Effortless by design</h2>
+            <p class="section-description">Here's how it works for tax professionals:</p>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-number">1</div>
+                    <div class="timeline-content">
+                        <p class="timeline-step">Connect & Nurture</p>
+                        <h3 class="timeline-title">Reach Every Client</h3>
+                        <p class="timeline-description">IntellaBooks proactively reaches out to your existing clients to check in, ensure satisfaction, and collect updated information—building loyalty before they even think about going elsewhere.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-number">2</div>
+                    <div class="timeline-content">
+                        <p class="timeline-step">Qualify & Answer</p>
+                        <h3 class="timeline-title">24/7 Intelligence</h3>
+                        <p class="timeline-description">Our AI handles inbound calls around the clock—collecting details, qualifying leads, and answering questions using your custom knowledge repository, with smart guardrails to know when a human touch is needed.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-number">3</div>
+                    <div class="timeline-content">
+                        <p class="timeline-step">Close the Loop</p>
+                        <h3 class="timeline-title">Seamless Integration</h3>
+                        <p class="timeline-description">We don't just capture information—we close the loop. Whether it's scheduling a meeting, setting a callback, sending a follow-up text, or enrolling them in a nurture campaign, we integrate with your existing process to ensure nothing falls through the cracks.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="footer-note">You wake up to a calendar full of qualified meetings. Focus on what you love—we'll handle the rest.</p>
+        </div>
+    </section>
+
+    <!-- Scale Section -->
+    <section class="scale-section">
+        <div class="container">
+            <p class="section-intro">Once Retention Is Dialed In</p>
+            <h2 class="section-title">Then we scale intelligently</h2>
+            <p class="section-description">After your nurture system proves ROI, we layer in acquisition—but only what your data says you actually need.</p>
+            
+            <div class="scale-grid">
+                <div class="scale-card">
+                    <h3>Smart Audience Targeting</h3>
+                    <p>We find your next customers by building "lookalike audiences"—targeting people who share traits with your best existing clients. Studies show it takes 7-13 impressions for a message to stick, so we focus on the platforms that actually convert (Facebook, Google, LinkedIn)—not just selling you random social posts.</p>
+                </div>
+                
+                <div class="scale-card">
+                    <h3>High-Touch Communications</h3>
+                    <p>We manage your social presence across Instagram, Facebook, LinkedIn, and Google—creating scroll-stopping content with our in-house design team. Plus, we send direct mail (yes, physical letters) that stand out in a digital-first world. This is more than what traditional agencies offer.</p>
+                </div>
+                
+                <div class="scale-card">
+                    <h3>Process Optimization</h3>
+                    <p>Think of us as your technical advisors. We audit your existing systems and automate the repetitive processes that drain your team's time—whether it's data entry, reporting, or workflow bottlenecks. You get to focus on strategy while we handle execution.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Design Language Section -->
+    <section class="design-section">
+        <div class="container">
+            <p class="section-intro">Your Brand. Your Workflow.</p>
+            <h2 class="section-title">Seamlessly integrated</h2>
+            
+            <div class="mockup-container">
+                <div class="dashboard-mockup">
+                    <div style="display: flex; flex-direction: column; height: 100%; justify-content: space-around;">
+                        <div style="height: 40px; background: rgba(0, 217, 255, 0.1); border-radius: 8px; margin-bottom: 16px;"></div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                            <div style="height: 100px; background: rgba(0, 217, 255, 0.08); border-radius: 12px;"></div>
+                            <div style="height: 100px; background: rgba(0, 217, 255, 0.08); border-radius: 12px;"></div>
+                            <div style="height: 100px; background: rgba(0, 217, 255, 0.08); border-radius: 12px;"></div>
+                            <div style="height: 100px; background: rgba(0, 217, 255, 0.08); border-radius: 12px;"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="phone-mockup">
+                    <div class="phone-screen">
+                        <div class="call-indicator"></div>
+                        <p class="call-text">Incoming Call</p>
+                        <p class="call-name">IntellaBooks AI</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Closing Section -->
+    <section class="closing-section">
+        <div class="container">
+            <div class="quote-box">
+                <p class="quote-text">"Software used to be a tool you managed. IntellaBooks is a partner that manages the tools for you. We've combined enterprise-level data strategy, world-class AI infrastructure, and decades of operational expertise to build a system that ensures no relationship—and no opportunity—ever slips away."</p>
+                <p class="quote-author">Alicia & Xavier, Founders</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <div class="container">
+            <h2 class="final-headline">Let's build something that lasts</h2>
+            <p class="final-subtext">We're not here to sell you a quick fix. We're here to build a partnership that helps you strengthen every relationship, grow sustainably, and focus on what you genuinely love doing. Let's create a system that works for you—today and for years to come.</p>
+            <a href="#" class="cta-primary">Click Here to Start</a>
+        </div>
+    </section>
+</body>
+</html>
